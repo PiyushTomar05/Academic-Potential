@@ -20,6 +20,10 @@ class PlatformPhaseThreeTest extends TestCase
         parent::setUp();
         // Setup local storage fake for tests
         Storage::fake('public');
+
+        // Clear persistent MongoDB collections to prevent E11000 duplicate key errors
+        User::query()->delete();
+        Evaluation::query()->delete();
     }
 
     /**
