@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Evaluating Academic Potential - AI Employment Prediction</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Geist & Inter -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-container": "#bc4800",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface": "#191b23",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004ac6",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3039",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "inverse-on-surface": "#f0f0fb",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-high": "#e7e7f3",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf8ff",
+                        "on-primary-container": "#eeefff",
+                        "outline": "#737686",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#dae2fd",
+                        "surface-dim": "#d9d9e5",
+                        "on-tertiary-container": "#ffede6",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f3fe",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#ededf9",
+                        "on-background": "#191b23",
+                        "surface-container-highest": "#e1e2ed",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-variant": "#e1e2ed",
+                        "secondary": "#565e74",
+                        "on-surface-variant": "#434655",
+                        "tertiary": "#943700",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5c647a",
+                        "surface-bright": "#faf8ff",
+                        "background": "#faf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "base": "8px",
+                        "sidebar-width": "280px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "headline-lg-mobile": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-xl": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .ai-gradient-text {
+            background: linear-gradient(135deg, #004ac6 0%, #00d2ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .ai-btn-gradient {
+            background: linear-gradient(135deg, #004ac6 0%, #2563eb 100%);
+        }
+        body {
+            background-color: #F8FAFC;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/70 dark:bg-surface-dim/70 backdrop-blur-xl border-b border-white/10 shadow-sm">
+<div class="max-w-container-max mx-auto px-md py-sm flex justify-between items-center">
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">
+                Evaluating Academic Potential
+            </div>
+<div class="hidden md:flex items-center gap-lg">
+<a class="font-label-md text-label-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary dark:border-primary-fixed-dim pb-1 transition-colors" href="#">Home</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors" href="#">Features</a>
+<a class="font-label-md text-label-md text-on-surface-variant dark:text-surface-variant hover:text-primary transition-colors" href="#">About</a>
+</div>
+<div class="flex items-center gap-base">
+<button class="px-md py-xs font-label-md text-label-md text-primary hover:bg-primary/5 rounded-lg transition-all cursor-pointer active:opacity-80">Login</button>
+<button class="px-md py-xs font-label-md text-label-md bg-primary text-on-primary rounded-lg shadow-sm hover:shadow-md transition-all cursor-pointer active:opacity-80">Register</button>
+</div>
+</div>
+</nav>
+<main class="pt-xl">
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-32 pb-24 md:pt-48 md:pb-32 px-md">
+<!-- Decorative Background Element -->
+<div class="absolute top-0 right-0 -z-10 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] translate-x-1/2 -translate-y-1/2"></div>
+<div class="max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-2 gap-lg items-center">
+<div class="space-y-md">
+<div class="inline-flex items-center gap-xs px-sm py-xs bg-primary-container/10 text-primary rounded-full font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px]">school</span>
+                        Next-Gen Academic Analytics
+                    </div>
+<h1 class="font-headline-xl text-headline-xl leading-tight">
+                        Evaluating Academic <span class="ai-gradient-text">Potential</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+                        AI Powered Employment Potential Prediction using Artificial Neural Networks. Predict student career trajectories with 98% accuracy.
+                    </p>
+<div class="flex flex-wrap gap-base pt-base">
+<button class="ai-btn-gradient px-lg py-sm text-white font-label-md text-label-md rounded-xl shadow-lg hover:scale-[1.02] transition-transform active:scale-100 flex items-center gap-sm">
+                            Start Evaluation
+                            <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+<button class="px-lg py-sm border border-outline-variant text-on-surface font-label-md text-label-md rounded-xl hover:bg-surface-container transition-colors">
+                            Learn More
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="glass-card p-base rounded-3xl shadow-xl overflow-hidden aspect-[4/3] flex items-center justify-center">
+<img alt="AI Predictive Analytics Dashboard" class="w-full h-full object-cover rounded-2xl" data-alt="A sophisticated data visualization dashboard showing interconnected neural network nodes and glowing pulse lines in a light blue and white aesthetic. The scene conveys high-technology and futuristic academic analysis with clean glassmorphism layers and sharp, professional vector graphics. The lighting is soft and corporate, emphasizing clarity and intelligence in a bright modern environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB32EyUQ13wLz_83lBkE5TY3Qraw9xJOSgQvMovP82kGRp19tw8wRNrlkLkTJwuuB7Qcu7MFuhQinjQ_S9Xa5ZS0frZ9ainrnFNmU0wzXegJBd5uY8gCYkUBA2iHL8WRy7CdUwCG-TDQDl8pTFUlTdK849sTPNUiQk65NUvCNnzlQe2XGu70ophGmbpQ3hcgTLSAA7Vi8HQzKKwHddSmVNVJEmVdbltuTewmo8qC_EyGgj7crmMvYtH4mCZRasIgVnDV6QynzyXkEs"/>
+</div>
+<!-- Floating Data Card Micro-interaction -->
+<div class="absolute -bottom-base -left-base glass-card p-md rounded-2xl shadow-lg border border-white/20 animate-bounce transition-all duration-1000" style="animation-duration: 4s;">
+<div class="flex items-center gap-sm">
+<div class="p-xs bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Prediction Accuracy</p>
+<p class="font-headline-md text-headline-md text-primary">98.4%</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Statistics Section -->
+<section class="bg-surface-container-low py-xl px-md">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-md">
+<div class="text-center p-md">
+<p class="font-headline-xl text-headline-xl text-primary mb-xs">500k+</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Students Evaluated</p>
+</div>
+<div class="text-center p-md">
+<p class="font-headline-xl text-headline-xl text-primary mb-xs">120+</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Partner Universities</p>
+</div>
+<div class="text-center p-md">
+<p class="font-headline-xl text-headline-xl text-primary mb-xs">0.2s</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Prediction Time</p>
+</div>
+<div class="text-center p-md">
+<p class="font-headline-xl text-headline-xl text-primary mb-xs">98%</p>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Accuracy Rate</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="py-xl px-md">
+<div class="max-w-container-max mx-auto">
+<div class="text-center mb-xl">
+<h2 class="font-headline-lg text-headline-lg mb-sm">Intelligent Features for Modern Education</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto">Leveraging Multi-Layer Perceptrons to bridge the gap between academic results and professional success.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-md">
+<!-- Feature 1 -->
+<div class="md:col-span-8 glass-card p-lg rounded-3xl hover:shadow-2xl transition-all group overflow-hidden relative">
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div>
+<span class="material-symbols-outlined text-primary text-[40px] mb-base">psychology</span>
+<h3 class="font-headline-md text-headline-md mb-base">ANN-Driven Insights</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md">Our Artificial Neural Network analyzes over 50 data points including GPA, extracurriculars, and psychological traits to predict employment fitness.</p>
+</div>
+<div class="mt-xl flex items-center gap-base">
+<span class="text-primary font-label-md">Explore Tech Stack</span>
+<span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<div class="absolute top-0 right-0 h-full w-1/3 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[300px] translate-x-1/2 translate-y-1/2" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="md:col-span-4 glass-card p-lg rounded-3xl bg-primary text-on-primary">
+<span class="material-symbols-outlined text-white text-[40px] mb-base">speed</span>
+<h3 class="font-headline-md text-headline-md mb-base">Real-time Analysis</h3>
+<p class="font-body-md text-body-md text-on-primary/80">Instant evaluation feedback for career counselors and students during the assessment process.</p>
+</div>
+<!-- Feature 3 -->
+<div class="md:col-span-4 glass-card p-lg rounded-3xl hover:shadow-lg transition-all">
+<span class="material-symbols-outlined text-primary text-[40px] mb-base">verified</span>
+<h3 class="font-headline-md text-headline-md mb-base">Bias Mitigation</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Advanced algorithms designed to remove gender and demographic bias from employment prediction models.</p>
+</div>
+<!-- Feature 4 -->
+<div class="md:col-span-8 glass-card p-lg rounded-3xl hover:shadow-lg transition-all flex flex-col md:flex-row items-center gap-lg">
+<div class="flex-1">
+<span class="material-symbols-outlined text-primary text-[40px] mb-base">monitoring</span>
+<h3 class="font-headline-md text-headline-md mb-base">Predictive Mapping</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Visualize the probability density of different job sectors based on academic clusters and skill sets.</p>
+</div>
+<div class="flex-1 w-full h-40 bg-surface-container rounded-xl flex items-center justify-center border border-outline-variant/10">
+<img alt="Data Clusters" class="w-full h-full object-cover rounded-xl" data-alt="A detailed, vibrant heat map chart displayed on a sleek glass tablet. The chart shows bright clusters of blue and teal against a soft white background, representing data distribution and density. The overall look is professional, high-end, and perfectly aligned with a modern corporate academic aesthetic with soft focused lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKWQkTDfXDdTRDVBQG63dJ-QPg6ozZPD8ugrweDrdWIgSljJ3xy29-zinnAmFo0Vl3pZNfXpKnIbj6IdHEVpEA0TAM9Ww2ImkGmLuyVnMB2xEkjrPEjgFPhHvxHj8M3kybfybx4ow0xaKZ4TwP7D-1rzWSb67EAzXIdl_gwu8BxJQybhZrrno0opwCvDI-ohCALPM1F1X7MQSLBA0oC2kYkbgUaQX-9m4S95lukIavdCz09wyPFrxx9wMJNA4gyb1P4Jh5lakye9U"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Workflow Section -->
+<section class="py-xl px-md bg-white">
+<div class="max-w-container-max mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-xl items-center">
+<div class="order-2 md:order-1">
+<div class="space-y-lg">
+<div class="flex gap-md">
+<div class="w-12 h-12 shrink-0 rounded-full bg-primary/10 flex items-center justify-center font-headline-md text-primary">1</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-xs">Input Vectorization</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Raw academic data is transformed into a normalized feature vector suitable for neural processing.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-12 h-12 shrink-0 rounded-full bg-primary/10 flex items-center justify-center font-headline-md text-primary">2</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-xs">MLP Processing</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Data passes through three hidden layers of the Multi-Layer Perceptron where weights and biases are applied.</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-12 h-12 shrink-0 rounded-full bg-primary/10 flex items-center justify-center font-headline-md text-primary">3</div>
+<div>
+<h4 class="font-headline-md text-headline-md mb-xs">Sigmoid Activation</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">The final output uses a sigmoid activation function to determine the probability of employment success.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="order-1 md:order-2 space-y-md">
+<h2 class="font-headline-lg text-headline-lg">How our ANN Engine Works</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+                            Our architecture utilizes back-propagation to continuously learn from historical hiring trends, ensuring that predictions evolve with the changing global job market.
+                        </p>
+<div class="p-base glass-card rounded-2xl border border-outline-variant/10">
+<div class="h-6 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-cyan-400 w-3/4 animate-pulse"></div>
+</div>
+<p class="font-label-sm text-label-sm mt-xs text-on-surface-variant text-center italic">AI Model Convergence in progress...</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-xl px-md">
+<div class="max-w-4xl mx-auto glass-card bg-[#0F172A] p-lg rounded-[2.5rem] text-center overflow-hidden relative">
+<div class="absolute inset-0 bg-primary/20 blur-[120px] -z-10"></div>
+<h2 class="font-headline-lg text-headline-lg text-white mb-base">Ready to Unlock Student Potential?</h2>
+<p class="font-body-lg text-body-lg text-secondary-fixed-dim/70 mb-lg max-w-xl mx-auto">Join the leading educational institutions globally using AI to guide the next generation of professionals.</p>
+<div class="flex flex-wrap justify-center gap-base">
+<button class="ai-btn-gradient px-lg py-sm text-white font-label-md text-label-md rounded-xl shadow-lg hover:brightness-110 transition-all">Get Started Today</button>
+<button class="px-lg py-sm border border-white/20 text-white font-label-md text-label-md rounded-xl hover:bg-white/5 transition-all">Request Demo</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-xl bg-surface border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-md flex flex-col md:flex-row justify-between items-center gap-base">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<div class="font-headline-md text-headline-md font-semibold text-on-surface">Evaluating Academic Potential AI</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">© 2024 Evaluating Academic Potential AI. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-md">
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">University Relations</a>
+<a class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Research Labs</a>
+</div>
+<div class="flex gap-base">
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">language</span>
+</a>
+<a class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">share</span>
+</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions and atmospheric scroll effects
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-md');
+            } else {
+                nav.classList.remove('shadow-md');
+            }
+        });
+
+        // Simple animation for progress bar
+        const progressBar = document.querySelector('.animate-pulse');
+        if (progressBar) {
+            setInterval(() => {
+                const randomWidth = Math.floor(Math.random() * 20) + 70;
+                progressBar.style.width = randomWidth + '%';
+            }, 3000);
+        }
+    </script>
+</body></html>

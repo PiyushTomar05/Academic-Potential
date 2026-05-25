@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Prediction History | Evaluating Academic Potential</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #F8FAFC;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-primary": "#b4c5ff",
+                        "on-tertiary-fixed-variant": "#7d2d00",
+                        "tertiary-container": "#bc4800",
+                        "secondary-fixed-dim": "#bec6e0",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface": "#191b23",
+                        "on-secondary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "primary": "#004ac6",
+                        "error-container": "#ffdad6",
+                        "inverse-surface": "#2e3039",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "inverse-on-surface": "#f0f0fb",
+                        "secondary-fixed": "#dae2fd",
+                        "surface-container-high": "#e7e7f3",
+                        "primary-container": "#2563eb",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#00174b",
+                        "surface-container-lowest": "#ffffff",
+                        "surface": "#faf8ff",
+                        "on-primary-container": "#eeefff",
+                        "outline": "#737686",
+                        "on-tertiary-fixed": "#360f00",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#dae2fd",
+                        "surface-dim": "#d9d9e5",
+                        "on-tertiary-container": "#ffede6",
+                        "error": "#ba1a1a",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f3f3fe",
+                        "outline-variant": "#c3c6d7",
+                        "surface-tint": "#0053db",
+                        "surface-container": "#ededf9",
+                        "on-background": "#191b23",
+                        "surface-container-highest": "#e1e2ed",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-variant": "#e1e2ed",
+                        "secondary": "#565e74",
+                        "on-surface-variant": "#434655",
+                        "tertiary": "#943700",
+                        "on-secondary-fixed-variant": "#3f465c",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#5c647a",
+                        "surface-bright": "#faf8ff",
+                        "background": "#faf8ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "40px",
+                        "base": "8px",
+                        "sidebar-width": "280px",
+                        "xl": "64px",
+                        "md": "24px",
+                        "sm": "12px",
+                        "xs": "4px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Geist"],
+                        "headline-xl": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "1.4", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-[#0F172A] text-secondary-fixed-dim shadow-xl z-50 flex flex-col overflow-y-auto">
+<div class="p-md flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="school">school</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-white">Academic AI</h1>
+<p class="text-xs text-secondary-fixed-dim/70">Potentials Evaluation</p>
+</div>
+</div>
+<nav class="flex-1 mt-md">
+<a class="flex items-center gap-sm px-md py-sm hover:bg-white/5 transition-all duration-200 text-secondary-fixed-dim/70 hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm hover:bg-white/5 transition-all duration-200 text-secondary-fixed-dim/70 hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="school">school</span>
+<span class="font-label-md text-label-md">Academic Evaluation</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm border-l-4 border-cyan-400 bg-primary/10 text-white font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+<span class="font-label-md text-label-md">Prediction History</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm hover:bg-white/5 transition-all duration-200 text-secondary-fixed-dim/70 hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm hover:bg-white/5 transition-all duration-200 text-secondary-fixed-dim/70 hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-sm px-md py-sm hover:bg-white/5 transition-all duration-200 text-secondary-fixed-dim/70 hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto p-md border-t border-outline-variant/10">
+<a class="flex items-center gap-sm px-md py-sm hover:bg-white/5 transition-all duration-200 text-secondary-fixed-dim/70 hover:text-white" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-sidebar-width min-h-screen p-md lg:p-lg flex flex-col gap-md">
+<!-- Header Section -->
+<header class="flex justify-between items-end mb-base">
+<div>
+<nav class="flex gap-xs text-on-surface-variant font-label-sm mb-xs">
+<span>Admin</span>
+<span>/</span>
+<span class="text-primary">Prediction History</span>
+</nav>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Prediction History</h2>
+<p class="text-on-surface-variant max-w-2xl mt-xs">Review historical AI evaluations of student performance and predicted academic trajectories based on cross-disciplinary metrics.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="bg-white/70 backdrop-blur-md border border-outline-variant/30 text-on-surface px-md py-sm rounded-xl font-label-md flex items-center gap-xs hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="download">download</span>
+                    Export CSV
+                </button>
+<button class="bg-primary text-white px-md py-sm rounded-xl font-label-md shadow-lg shadow-primary/20 hover:opacity-90 transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                    New Prediction
+                </button>
+</div>
+</header>
+<!-- Filters Section -->
+<section class="glass-card rounded-xl p-md flex flex-wrap items-center gap-md">
+<div class="flex-1 min-w-[300px] relative">
+<span class="material-symbols-outlined absolute left-sm top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-surface-container-lowest border border-outline-variant/50 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-body-md transition-all" placeholder="Search by student name or ID..." type="text"/>
+</div>
+<div class="flex items-center gap-sm">
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-on-surface-variant px-xs">Potential Level</label>
+<select class="bg-surface-container-lowest border border-outline-variant/50 rounded-lg py-sm px-md text-label-md outline-none focus:border-primary min-w-[160px]">
+<option>All Levels</option>
+<option>Exceptional</option>
+<option>High Potential</option>
+<option>Moderate</option>
+<option>At Risk</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs">
+<label class="font-label-sm text-on-surface-variant px-xs">Date Range</label>
+<div class="flex items-center bg-surface-container-lowest border border-outline-variant/50 rounded-lg py-sm px-md text-label-md min-w-[200px] gap-sm cursor-pointer">
+<span class="material-symbols-outlined text-[18px] text-outline" data-icon="calendar_today">calendar_today</span>
+<span>Last 30 Days</span>
+</div>
+</div>
+<div class="flex flex-col gap-xs self-end">
+<button class="bg-surface-container-high text-on-surface px-md py-sm rounded-lg font-label-md hover:bg-outline-variant/30 transition-colors">
+                        Clear Filters
+                    </button>
+</div>
+</div>
+</section>
+<!-- Data Table Section -->
+<section class="glass-card rounded-xl overflow-hidden shadow-sm flex flex-col">
+<div class="overflow-x-auto">
+<table class="w-full border-collapse">
+<thead class="bg-surface-container-low text-on-surface-variant border-b border-outline-variant/20">
+<tr>
+<th class="px-md py-md text-left font-label-sm uppercase tracking-wider">Student Name</th>
+<th class="px-md py-md text-left font-label-sm uppercase tracking-wider">ID Number</th>
+<th class="px-md py-md text-left font-label-sm uppercase tracking-wider">Score</th>
+<th class="px-md py-md text-left font-label-sm uppercase tracking-wider">Potential Level</th>
+<th class="px-md py-md text-left font-label-sm uppercase tracking-wider">Date Evaluated</th>
+<th class="px-md py-md text-right font-label-sm uppercase tracking-wider">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10">
+<!-- Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-md flex items-center gap-sm">
+<img alt="Elena Smith" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="A professional headshot of a female university student with a confident smile, set against a clean, light-colored architectural background. The lighting is soft and natural, emphasizing a bright and academic atmosphere with high-key whites and cool blue tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF7DGqV97DBJ4ofOuvDUnZOgK8MKA0m26dYFC4at1ZLDAGvDGMsRQz50G0bNY5X8siJXvVvriAY08m8pkesDcIRiP8ns-JurJkJaSsVlpdESpK05cHQpcowLMES2K0EkC4Lzi4cbWHN5Yrfkd6iOhrVJ9iqrV5VFkyYjA5544yy8GW6KwQ1hdyPDRbmfq38LNm1cNPoFuNQSnAbqqJ_XKP4JfU5QUov6Mlfsnw-evOTo9lhjAEd-3WrjdAIE0tlgJpLVg3yH6Xcro"/>
+<div>
+<div class="font-body-md font-semibold text-on-surface">Elena Smith</div>
+<div class="text-xs text-on-surface-variant">Applied Mathematics</div>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant font-label-md">#29401-A</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-24 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-cyan-400 h-full w-[92%]"></div>
+</div>
+<span class="font-label-md text-on-surface">92%</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 rounded-full bg-emerald-100 text-emerald-700 text-[12px] font-bold uppercase tracking-tight">Exceptional</span>
+</td>
+<td class="px-md py-md text-on-surface-variant text-label-md">Oct 24, 2024</td>
+<td class="px-md py-md text-right">
+<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-md flex items-center gap-sm">
+<img alt="Julian Drax" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="A focused male student in a modern library setting, wearing a simple navy sweater. The background features blurred books and warm lighting, creating a studious and high-end academic feel. The overall color palette is professional, utilizing deep navies and crisp light slate backgrounds." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoC_haZeqjWcJIRlSJxwJ92clju1iIPmsW_e34NIMIjjij-UMump61NevZXRebTAev2mu1ym7OQPaKLCh9MGBqQjbRgNQi79JtvJgtiDsNUmMyBvsDtQtYoiI44jqyw6X-cdMqEHhLd3pXb_LCQsTyXeWCUXFU99pBGKBTljPlhRKumSOO59JJh8HrmUSZT0SL7sFdE11Zmi5-nQDDA_CmLnwUOCRcnvVqYAmR-s-MbQ-jKNxaOTnaHpJNfk8J-Mku1xrPuU2zzdY"/>
+<div>
+<div class="font-body-md font-semibold text-on-surface">Julian Drax</div>
+<div class="text-xs text-on-surface-variant">Political Science</div>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant font-label-md">#31022-C</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-24 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-primary h-full w-[78%]"></div>
+</div>
+<span class="font-label-md text-on-surface">78%</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 rounded-full bg-blue-100 text-blue-700 text-[12px] font-bold uppercase tracking-tight">High Potential</span>
+</td>
+<td class="px-md py-md text-on-surface-variant text-label-md">Oct 22, 2024</td>
+<td class="px-md py-md text-right">
+<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-md flex items-center gap-sm">
+<img alt="Marcus Wade" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="A portrait of a male student looking thoughtfully at a digital tablet, with reflections of code or data on his glasses. The scene is set in a contemporary research lab with subtle cyan and white neon accents, maintaining a high-tech and modern corporate aesthetic with soft bokeh lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfiDEWcR9kZCV7sRjQ2GS0Ia9cKg1sZ8gitTTxXsbo3x3TG1O7Jns1cyp3T891cE1uwhzdkzqNYE9TDAaf0bAgoU8ytzkEvk9DmEWPuQUWPkOLCr5yebS5WQs4cqJMLJPMbDPgTYcvAkT2skI8iRwBwySgkfPITarZm770xhdbLafu5uN6qge_W0BPDzKIYePVVCoFvjweeDSyrYH3BEDYOnRXniNRmksRnjdC656Nb1X1SehbtOCwTdGQgmzXZ6L810bJ24CBcaU"/>
+<div>
+<div class="font-body-md font-semibold text-on-surface">Marcus Wade</div>
+<div class="text-xs text-on-surface-variant">Computer Science</div>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant font-label-md">#28445-B</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-24 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-amber-400 h-full w-[64%]"></div>
+</div>
+<span class="font-label-md text-on-surface">64%</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 rounded-full bg-amber-100 text-amber-700 text-[12px] font-bold uppercase tracking-tight">Moderate</span>
+</td>
+<td class="px-md py-md text-on-surface-variant text-label-md">Oct 20, 2024</td>
+<td class="px-md py-md text-right">
+<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-md flex items-center gap-sm">
+<img alt="Sara Lee" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="A bright, clean portrait of a young female student holding a notebook in a modern university hallway. The aesthetic is extremely clean and minimal, with soft daylight and a palette of whites and light grays. The mood is optimistic and professional, aligning with a premium educational platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCtRn_Gd1y63ntjcO965qKlU2OeRUbq6K6Tp-3FQ25J1aGSynKWQQWHfb37AdOjdgtQz71NjTbOTNTaAdKIIJHsLN7rPKEULrWkZyIQ3I5wqjo3lqn6bhxHQ5JgZn65-VWAVZbz_PKx5vZBVO9mDvOgAk2ZbVkEP2v6nz9RJMpJMjXoCU5SSMOVPLGU8vpLYzroqzlFHmvz1cj-VY-cwIlhHTcTohhLgJnhn-_uAje6oqEfIhZERGVADTUv1kXFrkX8fl07gYU0fJ4"/>
+<div>
+<div class="font-body-md font-semibold text-on-surface">Sara Lee</div>
+<div class="text-xs text-on-surface-variant">Economics</div>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant font-label-md">#33100-F</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-24 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-error h-full w-[42%]"></div>
+</div>
+<span class="font-label-md text-on-surface">42%</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 rounded-full bg-red-100 text-red-700 text-[12px] font-bold uppercase tracking-tight">At Risk</span>
+</td>
+<td class="px-md py-md text-on-surface-variant text-label-md">Oct 19, 2024</td>
+<td class="px-md py-md text-right">
+<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-md py-md flex items-center gap-sm">
+<img alt="Amara Okafor" class="w-10 h-10 rounded-full object-cover border-2 border-white shadow-sm" data-alt="A portrait of a confident female student in a light-filled common area of a modern campus. She is smiling and looking at the camera. The style is bright and airy, using corporate blues and pristine whites to evoke intelligence and future-readiness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAc9YZUJ3-wiIpEk10O9TYUvDwXeMf70uOqZBSgTtsQlKBBQcWYpbTqKNnwbXbTLkGbHEitKDhepLaIPSMgnDtgduBOWss4u5MMO_4uJissJJ9SzpU2PXEytGxBqCtekZOMtFHfTkzN75SzgMfW871L3Nxy1Ry7qqKqWZEEKaflRnB7811kvpkzrHVjDYxVNpREJvSb6skUIKpRp6Vz0908OOAElOnqwDfELmYDs8eZ-ONrwO29zXwEoq8tlSOCEDrwgWxs1SGUnnc"/>
+<div>
+<div class="font-body-md font-semibold text-on-surface">Amara Okafor</div>
+<div class="text-xs text-on-surface-variant">Bio-Engineering</div>
+</div>
+</td>
+<td class="px-md py-md text-on-surface-variant font-label-md">#27788-D</td>
+<td class="px-md py-md">
+<div class="flex items-center gap-sm">
+<div class="w-24 bg-surface-container-high rounded-full h-2 overflow-hidden">
+<div class="bg-cyan-400 h-full w-[88%]"></div>
+</div>
+<span class="font-label-md text-on-surface">88%</span>
+</div>
+</td>
+<td class="px-md py-md">
+<span class="px-sm py-1 rounded-full bg-emerald-100 text-emerald-700 text-[12px] font-bold uppercase tracking-tight">Exceptional</span>
+</td>
+<td class="px-md py-md text-on-surface-variant text-label-md">Oct 18, 2024</td>
+<td class="px-md py-md text-right">
+<button class="text-primary font-label-md hover:underline decoration-2 underline-offset-4">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="bg-surface-container-low px-md py-sm border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-base">
+<span class="text-label-md text-on-surface-variant">Showing 1 to 5 of 124 results</span>
+<div class="flex items-center gap-xs">
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-outline-variant cursor-not-allowed">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-white font-label-md">1</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface font-label-md transition-colors">2</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface font-label-md transition-colors">3</button>
+<span class="px-xs text-on-surface-variant">...</span>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface font-label-md transition-colors">25</button>
+<button class="w-10 h-10 rounded-lg flex items-center justify-center border border-outline-variant/30 text-on-surface hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Insights Bento Grid Footer -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-md mb-lg">
+<div class="glass-card rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Evaluation Velocity</span>
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</div>
+<div class="text-headline-md text-on-surface">+24%</div>
+<div class="text-xs text-on-surface-variant">Compared to previous semester peak performance levels.</div>
+</div>
+<div class="glass-card rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Average Prediction Score</span>
+<span class="material-symbols-outlined text-primary" data-icon="monitoring">monitoring</span>
+</div>
+<div class="text-headline-md text-on-surface">76.4%</div>
+<div class="text-xs text-on-surface-variant">Across all academic departments for current evaluation cycle.</div>
+</div>
+<div class="glass-card rounded-xl p-md flex flex-col gap-sm">
+<div class="flex items-center justify-between">
+<span class="text-label-sm text-on-surface-variant uppercase tracking-wider">Data Reliability</span>
+<span class="material-symbols-outlined text-cyan-500" data-icon="verified">verified</span>
+</div>
+<div class="text-headline-md text-on-surface">High</div>
+<div class="text-xs text-on-surface-variant">AI models validated with 98.2% historical accuracy.</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="mt-auto pt-lg border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-md flex flex-col md:flex-row justify-between items-center gap-base">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-md text-headline-md font-semibold text-on-surface">Evaluating Academic Potential AI</span>
+<p class="text-label-sm text-on-surface-variant mt-xs">© 2024 Evaluating Academic Potential AI. All rights reserved.</p>
+</div>
+<div class="flex gap-md">
+<a class="text-body-md font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-body-md font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="text-body-md font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">University Relations</a>
+<a class="text-body-md font-label-sm text-on-surface-variant hover:text-primary transition-colors" href="#">Research Labs</a>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('tr').forEach(row => {
+            row.addEventListener('click', (e) => {
+                if(e.target.tagName !== 'BUTTON') {
+                    console.log('Navigating to student details...');
+                }
+            });
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('scale-[1.01]');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('scale-[1.01]');
+        });
+    </script>
+</body></html>

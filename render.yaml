@@ -1,0 +1,29 @@
+services:
+  - type: web
+    name: academic-potential
+    runtime: docker
+    repo: https://github.com/Tomar/academic-potential
+    branch: main
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: APP_KEY
+        sync: false
+        generateValue: true
+      - key: DB_CONNECTION
+        value: mongodb
+      - key: MONGODB_URI
+        value: mongodb+srv://piyushtomarp_db_user:fo4OxWCTCTbLnyOn@cluster0.urivr7m.mongodb.net/academic_potential?appName=Cluster0
+      - key: MONGODB_DATABASE
+        value: academic_potential
+      - key: SESSION_DRIVER
+        value: file
+      - key: CACHE_STORE
+        value: file
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: LOG_CHANNEL
+        value: stderr

@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  # Laravel Web & API service (unified php-fpm + nginx + built assets)
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: academic_portal_app
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    environment:
+      - APP_NAME=Laravel
+      - APP_ENV=production
+      - APP_DEBUG=false
+      - APP_URL=http://localhost:8000
+      - DB_CONNECTION=mongodb
+      - MONGODB_URI=mongodb+srv://piyushtomarp_db_user:fo4OxWCTCTbLnyOn@cluster0.urivr7m.mongodb.net/academic_potential?appName=Cluster0
+      - MONGODB_DATABASE=academic_potential
+      - FASTAPI_URL=
