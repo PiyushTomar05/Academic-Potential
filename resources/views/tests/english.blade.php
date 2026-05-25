@@ -125,7 +125,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initEnglish() {
         let totalSeconds = 180; // 3 Minutes
         let elapsedSeconds = 0;
         const timerDisplay = document.getElementById('timer-display');
@@ -197,6 +197,12 @@
                 submitBtn.innerText = 'Submit Test Results';
             });
         }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initEnglish);
+    } else {
+        initEnglish();
+    }
 </script>
 @endsection

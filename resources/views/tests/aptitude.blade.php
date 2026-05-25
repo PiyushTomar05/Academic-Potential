@@ -152,7 +152,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initAptitude() {
         let totalSeconds = 300; // 5 Minutes
         let elapsedSeconds = 0;
         const timerDisplay = document.getElementById('timer-display');
@@ -225,6 +225,12 @@
                 submitBtn.innerText = 'Submit Test Results';
             });
         }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAptitude);
+    } else {
+        initAptitude();
+    }
 </script>
 @endsection

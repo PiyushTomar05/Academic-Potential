@@ -226,14 +226,20 @@
     let timerInterval;
 
     // Start timer on load
-    document.addEventListener('DOMContentLoaded', () => {
+    function initTimer() {
         timerInterval = setInterval(() => {
             secondsElapsed++;
             const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
             const secs = String(secondsElapsed % 60).padStart(2, '0');
             document.getElementById('stopwatch').innerText = `${mins}:${secs}`;
         }, 1000);
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initTimer);
+    } else {
+        initTimer();
+    }
 
     function switchChallenge(index) {
         activeChallenge = index;

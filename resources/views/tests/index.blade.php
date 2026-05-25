@@ -126,10 +126,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->aptitude_test_score)
-                    <a href="{{ route('tests.certificate', 'aptitude') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->aptitude_test_score['total'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'aptitude') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'aptitude') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.aptitude') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-indigo-600 dark:bg-slate-900 dark:hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-md group-hover:shadow-indigo-500/25">
                     <span>{{ $user->aptitude_test_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -164,10 +174,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->english_test_score)
-                    <a href="{{ route('tests.certificate', 'english') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->english_test_score['total'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'english') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'english') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.english') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-emerald-600 dark:bg-slate-900 dark:hover:bg-emerald-500 text-white text-xs font-bold transition-all shadow-md group-hover:shadow-emerald-500/25">
                     <span>{{ $user->english_test_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -202,10 +222,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->speaking_test_score)
-                    <a href="{{ route('tests.certificate', 'speaking') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->speaking_test_score['total'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'speaking') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'speaking') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.speaking') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-pink-600 dark:bg-slate-900 dark:hover:bg-pink-500 text-white text-xs font-bold transition-all shadow-md group-hover:shadow-pink-500/25">
                     <span>{{ $user->speaking_test_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -240,10 +270,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->reading_test_score)
-                    <a href="{{ route('tests.certificate', 'reading') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->reading_test_score['total'] ?? $user->reading_test_score['accuracy'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'reading') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'reading') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.reading') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-cyan-600 dark:bg-slate-900 dark:hover:bg-cyan-500 text-white text-xs font-bold transition-all shadow-md group-hover:shadow-cyan-500/25">
                     <span>{{ $user->reading_test_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -278,10 +318,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->written_test_score)
-                    <a href="{{ route('tests.certificate', 'written') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->written_test_score['total'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'written') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'written') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.written') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-purple-600 dark:bg-slate-900 dark:hover:bg-purple-500 text-white text-xs font-bold transition-all shadow-md group-hover:shadow-purple-500/25">
                     <span>{{ $user->written_test_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -316,10 +366,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->core_subject_score)
-                    <a href="{{ route('tests.certificate', 'core') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->core_subject_score['total'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'core') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'core') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.core') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-amber-600 dark:bg-slate-900 dark:hover:bg-amber-500 text-white text-xs font-bold transition-all shadow-md group-hover:shadow-amber-500/25">
                     <span>{{ $user->core_subject_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -354,10 +414,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->psychometric_test_score)
-                    <a href="{{ route('tests.certificate', 'psychometric') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->psychometric_test_score['total'] ?? $user->psychometric_test_score['readiness'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'psychometric') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'psychometric') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.psychometric') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-[#ec4899] dark:bg-slate-900 dark:hover:bg-[#ec4899] text-white text-xs font-bold transition-all shadow-md group-hover:shadow-[#ec4899]/25">
                     <span>{{ $user->psychometric_test_score ? 'Retake Assessment' : 'Begin Assessment' }}</span>
@@ -392,10 +462,20 @@
             </div>
             <div class="mt-6 space-y-2">
                 @if($user->coding_test_score)
-                    <a href="{{ route('tests.certificate', 'coding') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
-                        <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
-                        Claim Gold Certificate
-                    </a>
+                    @php
+                        $score = $user->coding_test_score['total'] ?? 0;
+                    @endphp
+                    @if($score >= 50)
+                        <a href="{{ route('tests.certificate', 'coding') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-amber-500/30 text-amber-500 font-extrabold text-xs bg-amber-500/5 hover:bg-amber-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">workspace_premium</span>
+                            Claim Gold Certificate
+                        </a>
+                    @else
+                        <a href="{{ route('tests.certificate', 'coding') }}" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-slate-500/30 text-slate-400 font-extrabold text-xs bg-slate-500/5 hover:bg-slate-500/10 transition-colors">
+                            <span class="material-symbols-outlined text-[16px]">card_membership</span>
+                            Claim Participation Certificate
+                        </a>
+                    @endif
                 @endif
                 <a href="{{ route('tests.coding') }}" class="w-full flex items-center justify-center gap-2 py-3 rounded-xl bg-slate-800 hover:bg-primary dark:bg-slate-900 dark:hover:bg-primary text-white text-xs font-bold transition-all shadow-md group-hover:shadow-primary/25">
                     <span>{{ $user->coding_test_score ? 'Retake Workspace' : 'Begin IDE Workspace' }}</span>

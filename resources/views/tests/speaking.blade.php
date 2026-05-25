@@ -123,7 +123,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initSpeaking() {
         const recordBtn = document.getElementById('record-btn');
         const stopBtn = document.getElementById('stop-btn');
         const recStatus = document.getElementById('recording-status');
@@ -254,6 +254,12 @@
             standbyMic.classList.remove('hidden');
             recordTimer.innerText = "0.0s";
         }
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSpeaking);
+    } else {
+        initSpeaking();
+    }
 </script>
 @endsection

@@ -175,7 +175,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initReading() {
         const startBtn = document.getElementById('start-reading-btn');
         const finishBtn = document.getElementById('finish-reading-btn');
         const instructionPanel = document.getElementById('instruction-panel');
@@ -275,6 +275,12 @@
                 submitBtn.innerText = 'Submit Test Results';
             });
         });
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initReading);
+    } else {
+        initReading();
+    }
 </script>
 @endsection

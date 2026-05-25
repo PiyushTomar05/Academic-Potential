@@ -237,7 +237,7 @@
 
 @section('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+    function initCore() {
         let totalSeconds = 120; // 2 Minutes
         let elapsedSeconds = 0;
         const timerDisplay = document.getElementById('timer-display');
@@ -346,6 +346,12 @@
 
         // Initialize toggle
         toggleStreamQuestions();
-    });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCore);
+    } else {
+        initCore();
+    }
 </script>
 @endsection

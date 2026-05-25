@@ -44,38 +44,69 @@
         }
     </style>
 </head>
+@php
+    $score = $testScore['total'] ?? 0;
+    if (isset($testScore['readiness'])) {
+        $score = $testScore['readiness'];
+    }
+    if ($type === 'reading') {
+        $score = $testScore['accuracy'] ?? 100;
+    }
+
+    $isExcellence = $score >= 50;
+    
+    $glowClass1 = $isExcellence ? 'bg-amber-500/10' : 'bg-slate-500/10';
+    $glowClass2 = $isExcellence ? 'bg-indigo-500/10' : 'bg-blue-500/10';
+    $borderClass = $isExcellence ? 'border-amber-500/30' : 'border-slate-500/40';
+    $innerBorderClass = $isExcellence ? 'border-amber-500/10' : 'border-slate-500/10';
+    $sealGradient = $isExcellence ? 'from-amber-600 to-yellow-400 shadow-amber-500/20' : 'from-slate-600 to-slate-400 shadow-slate-500/20';
+    $ribbonLeft = $isExcellence ? 'bg-amber-600' : 'bg-slate-600';
+    $ribbonRight = $isExcellence ? 'bg-amber-700' : 'bg-slate-700';
+    $ornamentClass = $isExcellence ? 'text-amber-500/20' : 'text-slate-500/20';
+    $accentText = $isExcellence ? 'text-amber-500' : 'text-slate-400';
+    $primaryAccent = $isExcellence ? 'text-amber-400' : 'text-slate-300';
+    
+    $certTypeLabel = $isExcellence ? 'VERIFIED CERTIFICATE OF EXCELLENCE' : 'VERIFIED CERTIFICATE OF PARTICIPATION';
+    $certTitle = $isExcellence ? 'Certificate of Achievement' : 'Certificate of Participation';
+    $certScoreLabel = $isExcellence ? 'diagnostic grade' : 'participation grade';
+    $certGradeValue = $type === 'reading' ? ($testScore['wpm'] . ' WPM') : (($testScore['total'] ?? $testScore['readiness'] ?? 0) . '%');
+    
+    $sigClass = $isExcellence ? 'text-amber-500/70' : 'text-slate-450/70';
+    $printBtnClass = $isExcellence ? 'bg-amber-600 hover:bg-amber-500 shadow-amber-500/20' : 'bg-slate-700 hover:bg-slate-600 shadow-slate-550/20';
+@endphp
+
 <body class="min-h-screen flex flex-col justify-center items-center p-6 relative overflow-x-hidden">
     <!-- Glow effects -->
-    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-amber-500/10 blur-[130px] pointer-events-none -z-10 glow-glow"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[130px] pointer-events-none -z-10 glow-glow"></div>
+    <div class="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full {{ $glowClass1 }} blur-[130px] pointer-events-none -z-10 glow-glow"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full {{ $glowClass2 }} blur-[130px] pointer-events-none -z-10 glow-glow"></div>
 
     <!-- Main Certificate Frame -->
-    <div class="w-full max-w-4xl bg-slate-900/60 backdrop-blur-xl border-4 border-amber-500/30 rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden cert-card border-double border-spacing-2">
+    <div class="w-full max-w-4xl bg-slate-900/60 backdrop-blur-xl border-4 {{ $borderClass }} rounded-[2.5rem] p-8 md:p-12 shadow-2xl relative overflow-hidden cert-card border-double border-spacing-2">
         <!-- Inner Border -->
-        <div class="absolute inset-4 border border-amber-500/10 rounded-[2rem] pointer-events-none"></div>
+        <div class="absolute inset-4 border {{ $innerBorderClass }} rounded-[2rem] pointer-events-none"></div>
 
         <!-- Floating corner ornaments -->
-        <div class="absolute top-8 left-8 text-amber-500/20 material-symbols-outlined text-[36px]">filter_retro</div>
-        <div class="absolute top-8 right-8 text-amber-500/20 material-symbols-outlined text-[36px]">filter_retro</div>
-        <div class="absolute bottom-8 left-8 text-amber-500/20 material-symbols-outlined text-[36px]">filter_retro</div>
-        <div class="absolute bottom-8 right-8 text-amber-500/20 material-symbols-outlined text-[36px]">filter_retro</div>
+        <div class="absolute top-8 left-8 {{ $ornamentClass }} material-symbols-outlined text-[36px]">filter_retro</div>
+        <div class="absolute top-8 right-8 {{ $ornamentClass }} material-symbols-outlined text-[36px]">filter_retro</div>
+        <div class="absolute bottom-8 left-8 {{ $ornamentClass }} material-symbols-outlined text-[36px]">filter_retro</div>
+        <div class="absolute bottom-8 right-8 {{ $ornamentClass }} material-symbols-outlined text-[36px]">filter_retro</div>
 
         <!-- Core Certificate Contents -->
         <div class="text-center space-y-6 relative z-10">
             <!-- Seal of Excellence -->
             <div class="flex justify-center">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-amber-600 to-yellow-400 flex items-center justify-center shadow-lg shadow-amber-500/20 relative animate-pulse">
+                <div class="w-20 h-20 rounded-full bg-gradient-to-tr {{ $sealGradient }} flex items-center justify-center shadow-lg relative animate-pulse">
                     <span class="material-symbols-outlined text-white text-[44px]">workspace_premium</span>
                     <!-- Ribbon -->
-                    <div class="absolute bottom-[-10px] w-6 h-8 bg-amber-600 transform rotate-12 skew-x-12 -z-10 rounded-b"></div>
-                    <div class="absolute bottom-[-10px] w-6 h-8 bg-amber-700 transform -rotate-12 -skew-x-12 -z-10 rounded-b"></div>
+                    <div class="absolute bottom-[-10px] w-6 h-8 {{ $ribbonLeft }} transform rotate-12 skew-x-12 -z-10 rounded-b"></div>
+                    <div class="absolute bottom-[-10px] w-6 h-8 {{ $ribbonRight }} transform -rotate-12 -skew-x-12 -z-10 rounded-b"></div>
                 </div>
             </div>
 
             <!-- Header -->
             <div class="space-y-1">
-                <span class="text-xs font-black text-amber-500 uppercase tracking-[0.25em] block">VERIFIED CERTIFICATE OF EXCELLENCE</span>
-                <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight cinzel-font py-2">Certificate of Achievement</h1>
+                <span class="text-xs font-black {{ $accentText }} uppercase tracking-[0.25em] block">{{ $certTypeLabel }}</span>
+                <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight cinzel-font py-2">{{ $certTitle }}</h1>
             </div>
 
             <!-- Description -->
@@ -84,16 +115,16 @@
                 <h2 class="text-2xl md:text-4xl font-black text-white py-1 border-b border-slate-700/50 max-w-lg mx-auto tracking-tight">{{ $user->name }}</h2>
                 <p class="text-sm md:text-base leading-relaxed text-slate-400 mt-4">
                     For successfully completing the diagnostic assessment for <br>
-                    <strong class="text-amber-400 font-extrabold">{{ $title }}</strong> <br>
-                    with a verified merit score of:
+                    <strong class="{{ $primaryAccent }} font-extrabold">{{ $title }}</strong> <br>
+                    with a verified score of:
                 </p>
             </div>
 
             <!-- Verified Score Badge -->
             <div class="flex justify-center my-6">
-                <div class="px-8 py-4 bg-slate-950/60 border border-amber-500/20 rounded-2xl flex flex-col items-center">
-                    <span class="text-[10px] text-slate-400 font-extrabold tracking-widest uppercase block mb-1">diagnostic grade</span>
-                    <strong class="text-3xl md:text-4xl font-black text-amber-400">{{ $testScore['total'] }}%</strong>
+                <div class="px-8 py-4 bg-slate-950/60 border border-slate-800/40 rounded-2xl flex flex-col items-center">
+                    <span class="text-[10px] text-slate-400 font-extrabold tracking-widest uppercase block mb-1">{{ $certScoreLabel }}</span>
+                    <strong class="text-3xl md:text-4xl font-black {{ $primaryAccent }}">{{ $certGradeValue }}</strong>
                 </div>
             </div>
 
@@ -110,7 +141,7 @@
                 <!-- Signatures -->
                 <div class="flex justify-around items-center gap-4">
                     <div class="text-center space-y-1">
-                        <span class="font-mono text-amber-500/70 block italic text-sm">Academic AI Engine</span>
+                        <span class="font-mono {{ $sigClass }} block italic text-sm">Academic AI Engine</span>
                         <div class="h-px w-24 bg-slate-800 mx-auto"></div>
                         <span class="text-[9px] text-slate-450 uppercase tracking-widest block font-bold">Authorized Signatory</span>
                     </div>
@@ -121,7 +152,7 @@
 
     <!-- Print / Close Actions -->
     <div class="flex items-center gap-4 mt-8 no-print">
-        <button onclick="window.print()" class="px-6 py-3 bg-amber-600 hover:bg-amber-500 text-white font-extrabold text-xs rounded-xl shadow-lg hover:shadow-amber-500/20 transition-all flex items-center gap-2">
+        <button onclick="window.print()" class="px-6 py-3 {{ $printBtnClass }} text-white font-extrabold text-xs rounded-xl shadow-lg transition-all flex items-center gap-2">
             <span class="material-symbols-outlined text-[18px]">print</span>
             Print Certificate
         </button>
