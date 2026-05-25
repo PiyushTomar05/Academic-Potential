@@ -2,7 +2,7 @@ services:
   - type: web
     name: academic-potential
     runtime: docker
-    repo: https://github.com/Tomar/academic-potential
+    repo: https://github.com/PiyushTomar05/Academic-Potential
     branch: main
     dockerfilePath: ./Dockerfile
     envVars:
