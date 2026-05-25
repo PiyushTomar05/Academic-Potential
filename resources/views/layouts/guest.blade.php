@@ -27,6 +27,15 @@
     @yield('styles')
 </head>
 <body class="min-h-screen relative overflow-x-hidden flex flex-col">
+    <!-- Dynamic Toast Notification -->
+    <div id="toast-notification" class="fixed top-20 right-6 z-50 transform translate-x-[150%] transition-transform duration-500 max-w-sm w-full bg-white dark:bg-slate-900 border-l-4 rounded-2xl shadow-2xl p-4 flex items-start gap-3 border-primary backdrop-blur-xl">
+        <span id="toast-icon" class="material-symbols-outlined text-[24px] mt-0.5">info</span>
+        <div>
+            <h5 id="toast-title" class="text-sm font-bold text-slate-800 dark:text-slate-100">Notification</h5>
+            <p id="toast-message" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Details of the session events.</p>
+        </div>
+        <button onclick="hideToast()" class="ml-auto material-symbols-outlined text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 text-[18px]">close</button>
+    </div>
 
     <!-- Global Background Glow Blobs -->
     <div class="fixed top-[-15%] right-[-10%] w-[600px] h-[600px] rounded-full bg-primary/5 dark:bg-primary/10 blur-[130px] pointer-events-none -z-10 transition-all duration-500"></div>
@@ -91,6 +100,68 @@
                 nav.classList.remove('shadow-xl', 'bg-white/95', 'dark:bg-slate-900/95', 'border-primary/10');
                 nav.classList.add('bg-white/70', 'dark:bg-slate-900/70');
             }
+        });
+    </script>
+    <script>
+        // Global Toast Notification Helper
+        let toastTimeout;
+        function showToast(title, message, type = 'info') {
+            const toast = document.getElementById('toast-notification');
+            const icon = document.getElementById('toast-icon');
+            const titleEl = document.getElementById('toast-title');
+            const msgEl = document.getElementById('toast-message');
+            
+            if (!toast) return;
+
+            // Reset classes
+            toast.className = "fixed top-20 right-6 z-50 transform transition-transform duration-500 max-w-sm w-full bg-white dark:bg-slate-900 border-l-4 rounded-2xl shadow-2xl p-4 flex items-start gap-3 backdrop-blur-xl transition-all duration-300";
+            
+            if (type === 'success') {
+                toast.classList.add('border-emerald-500');
+                icon.innerText = "check_circle";
+                icon.className = "material-symbols-outlined text-[24px] mt-0.5 text-emerald-500";
+            } else if (type === 'error') {
+                toast.classList.add('border-red-500');
+                icon.innerText = "warning";
+                icon.className = "material-symbols-outlined text-[24px] mt-0.5 text-red-500";
+            } else if (type === 'warning') {
+                toast.classList.add('border-amber-500');
+                icon.innerText = "report_problem";
+                icon.className = "material-symbols-outlined text-[24px] mt-0.5 text-amber-500";
+            } else {
+                toast.classList.add('border-primary');
+                icon.innerText = "info";
+                icon.className = "material-symbols-outlined text-[24px] mt-0.5 text-primary";
+            }
+
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+
+            // Slide in
+            toast.classList.remove('translate-x-[150%]');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(hideToast, 5000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast-notification');
+            if (toast) {
+                toast.classList.add('translate-x-[150%]');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Laravel session flash triggers
+            @if(session('status'))
+                showToast('Success', "{{ session('status') }}", 'success');
+            @endif
+            @if(session('error'))
+                showToast('Error', "{{ session('error') }}", 'error');
+            @endif
+            @if($errors->any())
+                showToast('Validation Error', "Please review form inputs and try again.", 'error');
+            @endif
         });
     </script>
     @yield('scripts')
