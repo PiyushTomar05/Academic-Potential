@@ -48,7 +48,8 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev
 # Configure Nginx, supervisord, and directory permissions
 RUN mkdir -p /run/nginx /var/log/supervisor \
     && chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache \
+    && php artisan storage:link
 
 # Copy Nginx config and supervisor configuration
 COPY ./docker/nginx.conf /etc/nginx/nginx.conf
