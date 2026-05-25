@@ -139,7 +139,7 @@
                 Share Result
                 <span id="shareToast" class="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded hidden font-bold">Link Copied!</span>
             </button>
-            <a href="{{ route('evaluation.form') }}" class="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-xl text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-1.5 shadow-lg shadow-primary/20 active:scale-95">
+            <a href="{{ route('prediction.final') }}" class="px-5 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-xl text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-all flex items-center gap-1.5 shadow-lg shadow-primary/20 active:scale-95">
                 <span class="material-symbols-outlined text-[18px]">add_circle</span>
                 New Evaluation
             </a>

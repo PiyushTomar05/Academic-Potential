@@ -700,7 +700,7 @@
                     <span class="material-symbols-outlined text-[64px] text-slate-300 dark:text-slate-700">query_stats</span>
                     <h4 class="text-lg text-slate-800 dark:text-slate-200 font-semibold">No Predictions Recorded Yet</h4>
                     <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md">Get started by running the neural evaluation network against a candidate's credentials.</p>
-                    <a href="{{ route('evaluation.form') }}" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-xl text-sm font-semibold hover:opacity-90 shadow-lg flex items-center gap-1.5 mt-3 active:scale-95 transition-all">
+                    <a href="{{ route('prediction.final') }}" class="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-xl text-sm font-semibold hover:opacity-90 shadow-lg flex items-center gap-1.5 mt-3 active:scale-95 transition-all">
                         <span class="material-symbols-outlined">psychology</span>
                         Run First Evaluation
                     </a>
